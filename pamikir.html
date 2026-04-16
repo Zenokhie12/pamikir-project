@@ -168,12 +168,306 @@
     const { createApp, reactive, computed } = Vue;
 
     const QUIZ_DATA = {
-      'Definitions & Basics': [
+      'Module 1 Ai': [
         {
-          question: "Who are the three mentioned intelligent digital personal assistants?",
-          options: ["ChatGPT, Claude, Gemini", "Siri, Cortana, Google Now", "Alexa, Bixby, Watson", "Skynet, HAL, Jarvis"],
-          correct: 1,
-          explanation: "Page 4 highlights Google Now, Siri, and Cortana as intelligent assistants on iOS, Android, and Windows."
+          "question": "How does the document define Artificial Intelligence in its first definition?",
+          "options": ["The creation of mechanical robots", "The study of computer systems that model the human mind", "The replacement of human workers with software", "The development of faster internet protocols"],
+          "correct": 1,
+          "explanation": "Page 3 defines AI as the study of computer systems that attempt to model and apply the intelligence of the human mind."
+        },
+        {
+          "question": "In what year did Alan Turing write 'Computing Machinery and Intelligence'?",
+          "options": ["1945", "1950", "1956", "1960"],
+          "correct": 1,
+          "explanation": "According to page 5, English mathematician Alan Turing wrote this landmark paper in 1950."
+        },
+        {
+          "question": "Who is credited with coining the phrase 'Artificial Intelligence'?",
+          "options": ["Alan Turing", "Bill Gates", "John McCarthy", "Elon Musk"],
+          "correct": 2,
+          "explanation": "Page 5 states that John McCarthy coined the phrase 'study of Artificial Intelligence' in a 1956 workshop proposal."
+        },
+        {
+          "question": "Which workshop served as a major foundation for AI further work in 1956?",
+          "options": ["The Oxford Workshop", "The Dartmouth Workshop", "The Silicon Valley Summit", "The MIT Conference"],
+          "correct": 1,
+          "explanation": "Page 5 mentions that further work came out of a 1956 workshop at Dartmouth sponsored by John McCarthy."
+        },
+        {
+          "question": "Which company is mentioned as a 'major player' in AI transcendence and Deep Learning?",
+          "options": ["Apple", "Microsoft", "Google", "Samsung"],
+          "correct": 2,
+          "explanation": "Page 7 explicitly identifies Google as a major player in AI transcendence and Deep Learning."
+        },
+        {
+          "question": "What is 'Deep Learning' based on according to the text?",
+          "options": ["Hardware upgrades", "Algorithms", "Manual data entry", "Social media trends"],
+          "correct": 1,
+          "explanation": "Page 7 defines Deep Learning as machine learning based on algorithms."
+        },
+        {
+          "question": "Which of these is listed as a 'Challenge' for AI?",
+          "options": ["Battery life", "Intuitive Thinking", "Internet speed", "Screen resolution"],
+          "correct": 1,
+          "explanation": "Page 8 lists 'Intuitive Thinking' as one of the key challenges for AI."
+        },
+        {
+          "question": "Which challenge refers to the ability of AI to make decisions or evaluations?",
+          "options": ["Tolerance Power", "Computing Power", "Judging Power", "Deep Learning"],
+          "correct": 2,
+          "explanation": "Page 8 lists 'Judging Power' as a significant challenge for artificial intelligence."
+        },
+        {
+          "question": "Which field is NOT mentioned as a future application of AI on page 9?",
+          "options": ["Self-driving cars", "Improved medical care", "Time travel", "Future explorations"],
+          "correct": 2,
+          "explanation": "Page 9 lists self-driving cars, medical care, and future explorations, but does not mention time travel."
+        },
+        {
+          "question": "What is one 'Pro' of AI regarding work efficiency?",
+          "options": ["It creates more jobs", "It can do repetitive and time-consuming tasks", "It understands human emotions", "It is inexpensive to maintain"],
+          "correct": 1,
+          "explanation": "Page 10 lists the ability to do repetitive and time-consuming tasks as a benefit."
+        },
+        {
+          "question": "Which 'Con' is associated with the emotional capacity of AI?",
+          "options": ["Too much empathy", "Lacking the emotional side", "Feeling pain", "Caring too much for humans"],
+          "correct": 1,
+          "explanation": "Page 10 notes that AI is 'Lacking the emotional side'."
+        },
+        {
+          "question": "What social issue is listed as a potential negative consequence (Con) of AI?",
+          "options": ["Overpopulation", "Unemployment", "High taxes", "Global warming"],
+          "correct": 1,
+          "explanation": "Unemployment is listed on page 10 as a downside of increased AI usage."
+        },
+        {
+          "question": "What could happen to human abilities if we become too dependent on AI?",
+          "options": ["They will increase", "They may diminish", "They will stay the same", "They will become robotic"],
+          "correct": 1,
+          "explanation": "Page 10 suggests that the 'Abilities of humans may diminish' due to AI."
+        },
+        {
+          "question": "Which of these is a physical task AI/Robotics can assist with?",
+          "options": ["Mining processes", "Eating food", "Sleeping", "Growing hair"],
+          "correct": 0,
+          "explanation": "Page 10 mentions that AI is used for mining processes and laborious tasks."
+        },
+        {
+          "question": "What does John McCarthy define AI as in the conclusion?",
+          "options": ["The death of humanity", "The science and engineering of making intelligent machines", "The study of internet browsing", "A method for faster calculations"],
+          "correct": 1,
+          "explanation": "The conclusion on page 11 states McCarthy defines it as 'The Science and Engineering of making intelligent Machines'."
+        },
+        {
+          "question": "How does an 'Intelligent Agent' interact with its environment?",
+          "options": ["It ignores it", "It perceives its environment and takes actions", "It destroys it", "It asks humans what to do"],
+          "correct": 1,
+          "explanation": "Page 11 describes an intelligent agent as a system that perceives its environment and takes actions to maximize success."
+        },
+        {
+          "question": "What is a disadvantage regarding the maintenance of AI?",
+          "options": ["It is free", "Cost incurred in maintenance and repair", "It repairs itself", "It never breaks down"],
+          "correct": 1,
+          "explanation": "Page 10 lists 'Cost incurred in the maintenance and repair' as a con."
+        },
+        {
+          "question": "Which type of 'power' relates to the speed of AI processing?",
+          "options": ["Solar Power", "Computing Power", "Wind Power", "Emotional Power"],
+          "correct": 1,
+          "explanation": "Computing Power is listed as a challenge on page 8."
+        },
+        {
+          "question": "Which robotic application is mentioned in the context of surgery?",
+          "options": ["Robotic heart", "Robotic radiosurgery", "Robotic massage", "Robotic band-aids"],
+          "correct": 1,
+          "explanation": "Page 10 specifically mentions 'Robotic radiosurgery' as a pro/application."
+        },
+        {
+          "question": "What risk does the document mention regarding 'wrong hands'?",
+          "options": ["It will become boring", "It causes destruction", "It will run out of battery", "It will stop working"],
+          "correct": 1,
+          "explanation": "Page 10 states that 'Wrong hands causes destruction' in the context of AI."
+        },
+        {
+          "question": "Which platform is Cortana associated with?",
+          "options": ["iOS", "Android", "Windows Mobile", "Linux"],
+          "correct": 2,
+          "explanation": "Page 4 identifies Cortana as an assistant on the Windows Mobile platform."
+        },
+        {
+          "question": "AI textbooks define the field as 'The Study and Design of...' what?",
+          "options": ["Modern Computers", "Intelligent Agents", "Social Networks", "Data Structures"],
+          "correct": 1,
+          "explanation": "The conclusion on page 11 mentions that AI textbooks define the field as 'The Study and Design of Intelligent Agents'."
+        },
+        {
+          "question": "Which of these is a characteristic of AI tasks listed in the document?",
+          "options": ["Repetitive", "Only creative", "Only emotional", "Always unpredictable"],
+          "correct": 0,
+          "explanation": "Page 10 states AI can do 'repetitive and time-consuming tasks'."
+        },
+        {
+          "question": "According to page 7, where can AI characters be found?",
+          "options": ["In books", "In video games", "In radio shows", "In paintings"],
+          "correct": 1,
+          "explanation": "Video Game Characters are listed under the 'Current Status of AI' on page 7."
+        },
+        {
+          "question": "What is the primary way humans interact with Siri or Google Now?",
+          "options": ["Typing only", "Using our voice", "Thinking at it", "Hand signals"],
+          "correct": 1,
+          "explanation": "Page 4 explains that these assistants help find information 'when we ask for it using our voice'."
+        },
+        {
+          "question": "Which of the following is NOT a challenge listed on page 8?",
+          "options": ["Judging Power", "Tolerance Power", "Battery Life", "Computing Power"],
+          "correct": 2,
+          "explanation": "Battery life is not listed on page 8; the others are mentioned as challenges."
+        },
+        {
+          "question": "What is one mentioned use of AI in records management?",
+          "options": ["Deleting all files", "Fraud detection", "Printing paper", "Social media posting"],
+          "correct": 1,
+          "explanation": "Page 10 mentions 'Fraud detection, manage records' as a pro of AI."
+        },
+        {
+          "question": "AI is described as a branch of which science?",
+          "options": ["Social Science", "Computer Science", "Biological Science", "Physical Science"],
+          "correct": 1,
+          "explanation": "Pages 3 and 11 define AI as a branch of Computer Science."
+        },
+        {
+          "question": "What 'test' was named after the mathematician who asked 'Can machines think?'",
+          "options": ["The McCarthy Test", "The Turing Test", "The Google Test", "The Dartmouth Test"],
+          "correct": 1,
+          "explanation": "Page 5 highlights the 'Turing test' as part of the early history of AI."
+        },
+        {
+          "question": "Which 'Con' refers to AI's inability to think outside its programming?",
+          "options": ["Lack of power", "Not able to act any different", "Too much creativity", "High speed"],
+          "correct": 1,
+          "explanation": "Page 10 lists 'Not able to act any different' as a limitation/con."
+        },
+        {
+          "question": "What type of 'pets' are mentioned as an application of AI?",
+          "options": ["Furry pets", "Robotic pets", "Virtual pets", "Invisible pets"],
+          "correct": 1,
+          "explanation": "Page 10 lists 'Robotic pets' as a positive application of AI."
+        },
+        {
+          "question": "In the context of the future, what is CMU betting on?",
+          "options": ["Flying cars", "AI areas being hugely important", "The end of AI", "Manual labor"],
+          "correct": 1,
+          "explanation": "Page 9 mentions 'CMU is betting several other AI areas are going to be hugely important'."
+        },
+        {
+          "question": "Which task can AI perform without stopping?",
+          "options": ["Creative writing", "Laborious and repetitive tasks", "Emotional counseling", "Philosophy"],
+          "correct": 1,
+          "explanation": "Page 10 states that AI can 'Function without stopping'."
+        },
+        {
+          "question": "What does AI lack that humans use for everyday problem solving?",
+          "options": ["Batteries", "Common sense", "Electricity", "Speed"],
+          "correct": 1,
+          "explanation": "Page 10 lists 'Lack common sense' as a con of AI."
+        },
+        {
+          "question": "What was the title of Alan Turing's 1950 paper?",
+          "options": ["I, Robot", "Computing Machinery and Intelligence", "The AI Handbook", "Dartmouth Proposal"],
+          "correct": 1,
+          "explanation": "Page 5 identifies the paper as 'Computing Machinery and Intelligence'."
+        },
+        {
+          "question": "Which of these is a 'Pro' of AI in space?",
+          "options": ["Space exploration", "Alien communication", "Planet destruction", "Building hotels"],
+          "correct": 0,
+          "explanation": "Page 10 lists 'Space exploration' as a pro of AI."
+        },
+        {
+          "question": "What 'touch' is AI said to lack?",
+          "options": ["The robotic touch", "The human touch", "The metal touch", "The cold touch"],
+          "correct": 1,
+          "explanation": "Page 10 lists 'Lack the human touch' as a con."
+        },
+        {
+          "question": "How is AI described in relation to risk?",
+          "options": ["Risk Increasing", "Risk Reducing", "Risk Neutral", "Always Dangerous"],
+          "correct": 1,
+          "explanation": "Page 10 describes AI as 'Risk Reducing'."
+        },
+        {
+          "question": "Which is an example of AI in navigation mentioned in the text?",
+          "options": ["Paper maps", "GPS", "Stars", "Compass"],
+          "correct": 1,
+          "explanation": "Page 7 lists 'GPS/ Voice Recognition' as a current form of AI."
+        },
+        {
+          "question": "Which is NOT a digital personal assistant mentioned on page 4?",
+          "options": ["Siri", "Alexa", "Cortana", "Google Now"],
+          "correct": 1,
+          "explanation": "While Alexa is an assistant, the document specifically lists Siri, Cortana, and Google Now."
+        },
+        {
+          "question": "What is one medical benefit of AI mentioned on page 10?",
+          "options": ["Diagnosis and Treatment", "Granting immortality", "Replacing all doctors", "Reading minds"],
+          "correct": 0,
+          "explanation": "Page 10 lists 'Diagnosis and Treatment' as a pro of AI."
+        },
+        {
+          "question": "AI 'Precision and Accuracy' is listed as a:",
+          "options": ["Pro", "Con", "Challenge", "Future goal"],
+          "correct": 0,
+          "explanation": "Page 10 lists 'Precision and Accuracy' under the Pros section."
+        },
+        {
+          "question": "The document mentions that humans may become _____ on machines.",
+          "options": ["Angry", "Dependent", "Frightened", "Bosses"],
+          "correct": 1,
+          "explanation": "Page 10 states 'Humans may become dependent on machines' as a con."
+        },
+        {
+          "question": "Which of these is a 'Con' regarding the mind of AI?",
+          "options": ["Too creative", "Lack a creative mind", "Always dreaming", "Forgetful"],
+          "correct": 1,
+          "explanation": "Page 10 lists 'Lack a creative mind' as a con."
+        },
+        {
+          "question": "What does AI aim to 'model and apply'?",
+          "options": ["Animal instincts", "Intelligence of the human mind", "Weather patterns", "Stock market trends"],
+          "correct": 1,
+          "explanation": "Page 3 defines AI as attempting to model the intelligence of the human mind."
+        },
+        {
+          "question": "In what decade was the phrase 'Artificial Intelligence' coined?",
+          "options": ["1940s", "1950s", "1960s", "1970s"],
+          "correct": 1,
+          "explanation": "It was coined in 1956 (the 1950s) according to page 5."
+        },
+        {
+          "question": "According to page 10, AI can be used for which industrial process?",
+          "options": ["Farming", "Mining process", "Fishing", "Cooking"],
+          "correct": 1,
+          "explanation": "Page 10 explicitly mentions the 'mining process' as a pro/application."
+        },
+        {
+          "question": "What is the result of AI 'superseding' humans?",
+          "options": ["A con of AI", "A pro of AI", "An early history fact", "A requirement for Siri"],
+          "correct": 0,
+          "explanation": "Page 10 lists 'Robots superseding humans' as a con."
+        },
+        {
+          "question": "Which personal assistant is NOT mentioned as being on Android/iOS/Windows Mobile?",
+          "options": ["Siri", "Google Now", "Cortana", "ChatGPT"],
+          "correct": 3,
+          "explanation": "Page 4 mentions the first three, but not ChatGPT."
+        },
+        {
+          "question": "The conclusion states AI is the intelligence of what?",
+          "options": ["Humans", "Animals", "Machines", "Plants"],
+          "correct": 2,
+          "explanation": "The conclusion on page 11 states AI is the 'intelligence of machines'."
         }
       ],
       'History & Turing': [
