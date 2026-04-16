@@ -1,176 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ITE153 Quizzer 2026</title>
-  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    [v-cloak] { display: none; }
-    .page-enter-active, .page-leave-active { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-    .page-enter-from { opacity: 0; transform: translateY(10px); }
-    .page-leave-to { opacity: 0; transform: translateY(-10px); }
-    
-    .option-btn { transition: all 0.2s ease; }
-    .option-btn:not(:disabled):hover { transform: translateX(4px); }
-  </style>
-</head>
-<body class="bg-slate-50 text-slate-900">
-  
-  <div id="app" v-cloak>
-    <div class="min-h-screen flex flex-col max-w-2xl mx-auto px-4 py-8">
-      
-      <!-- Navigation / Header -->
-      <header class="flex items-center justify-between mb-10">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-indigo-200">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
-          <div>
-            <h1 class="text-xl font-black tracking-tight text-slate-800">ITE153</h1>
-            <p class="text-[10px] font-bold text-indigo-500 uppercase tracking-widest">Self-Study Module</p>
-          </div>
-        </div>
-        
-        <button v-if="state.view !== 'landing'" @click="actions.reset" class="p-2 hover:bg-white rounded-full transition-colors text-slate-400 hover:text-indigo-600">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        </button>
-      </header>
-
-      <!-- Main Application Router -->
-      <main class="flex-grow">
-        <transition name="page" mode="out-in">
-          
-          <!-- Landing Page -->
-          <div v-if="state.view === 'landing'" key="landing" class="space-y-6">
-            <div class="bg-indigo-900 rounded-3xl p-8 text-white relative overflow-hidden shadow-2xl">
-              <div class="relative z-10">
-                <h2 class="text-2xl font-bold mb-2">ITE153 QUIZZER 2026</h2>
-                <p class="text-indigo-200 text-sm mb-6 leading-relaxed">Ready to test your knowledge on the core concepts, history, and future of machine intelligence?</p>
-                <div class="inline-flex items-center gap-2 bg-indigo-800/50 px-3 py-1.5 rounded-full text-xs font-semibold">
-                  <span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span>
-                  4 Modules Available
-                </div>
-              </div>
-              <svg class="absolute right-[-20px] bottom-[-20px] text-indigo-800 w-48 h-48 opacity-50" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><path d="M12 6a6 6 0 1 0 6 6 6 6 0 0 0-6-6zm0 10a4 4 0 1 1 4-4 4 4 0 0 1-4 4z"/></svg>
-            </div>
-
-            <div class="grid grid-cols-1 gap-4">
-              <button 
-                v-for="(data, cat) in state.quizData" 
-                :key="cat"
-                @click="actions.startQuiz(cat)"
-                class="group bg-white p-5 rounded-2xl border border-slate-200 flex items-center justify-between hover:border-indigo-500 hover:shadow-md transition-all text-left"
-              >
-                <div class="flex items-center gap-4">
-                  <div class="w-12 h-12 bg-slate-50 rounded-xl flex items-center justify-center text-slate-400 group-hover:bg-indigo-50 group-hover:text-indigo-600 transition-colors">
-                    <svg v-if="cat.includes('Definition')" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
-                    <svg v-else-if="cat.includes('History')" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                    <svg v-else xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-                  </div>
-                  <div>
-                    <h3 class="font-bold text-slate-700">{{ cat }}</h3>
-                    <p class="text-xs text-slate-400">{{ data.length }} Questions</p>
-                  </div>
-                </div>
-                <svg class="text-slate-300 group-hover:text-indigo-500 transition-colors" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-              </button>
-            </div>
-          </div>
-
-          <!-- Quiz Page -->
-          <div v-else-if="state.view === 'quiz'" key="quiz" class="space-y-6">
-            <div class="flex justify-between items-end">
-              <div>
-                <span class="text-[10px] font-bold text-indigo-600 uppercase tracking-tighter bg-indigo-50 px-2 py-0.5 rounded">Current Module</span>
-                <h2 class="text-lg font-bold text-slate-800">{{ state.category }}</h2>
-              </div>
-              <div class="text-right">
-                <p class="text-xs font-bold text-slate-400 uppercase">Question</p>
-                <p class="text-xl font-black text-slate-800">{{ state.currentQuestion + 1 }}<span class="text-sm text-slate-300">/{{ activeQuestions.length }}</span></p>
-              </div>
-            </div>
-
-            <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm">
-              <h3 class="text-xl font-bold mb-8 leading-snug">{{ currentQuestionData.question }}</h3>
-              
-              <div class="space-y-3">
-                <button
-                  v-for="(option, idx) in currentQuestionData.options"
-                  :key="idx"
-                  @click="actions.submitAnswer(idx)"
-                  :disabled="state.isAnswered"
-                  class="option-btn w-full text-left p-4 rounded-2xl border-2 flex justify-between items-center"
-                  :class="getOptionClass(idx)"
-                >
-                  <span class="font-medium">{{ option }}</span>
-                  <div v-if="state.isAnswered">
-                    <svg v-if="idx === currentQuestionData.correct" class="text-emerald-500" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                    <svg v-else-if="idx === state.selectedAnswer" class="text-rose-500" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                  </div>
-                </button>
-              </div>
-
-              <button v-if="!state.isAnswered" @click="actions.finishEarly" class="mt-4 w-full bg-red-600 text-white font-bold py-3 rounded-2xl shadow-lg hover:bg-red-700 transition-all">
-                Finish Quiz Early
-              </button>
-
-              <!-- Explanation Area -->
-              <transition name="page">
-                <div v-if="state.isAnswered" class="mt-8 bg-slate-50 p-6 rounded-2xl border border-slate-100">
-                  <div class="flex items-center gap-2 mb-2">
-                    <svg class="text-indigo-500" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M8 7h6"/><path d="M8 11h8"/></svg>
-                    <span class="text-xs font-bold uppercase text-indigo-600 tracking-wider">Reference</span>
-                  </div>
-                  <p class="text-sm text-slate-600 italic leading-relaxed">{{ currentQuestionData.explanation }}</p>
-                  <button @click="actions.next" class="w-full mt-6 bg-indigo-600 text-white font-bold py-4 rounded-2xl shadow-lg shadow-indigo-100 hover:bg-indigo-700 transition-all">
-                    {{ isLastQuestion ? 'Complete Module' : 'Continue' }}
-                  </button>
-                </div>
-              </transition>
-            </div>
-          </div>
-
-          <!-- Results Page -->
-          <div v-else-if="state.view === 'results'" key="results" class="text-center space-y-6">
-            <div class="bg-white p-10 rounded-[2.5rem] border border-slate-200 shadow-xl">
-              <div class="w-24 h-24 bg-amber-50 rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg class="text-amber-500" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
-              </div>
-              <h2 class="text-3xl font-black text-slate-800 mb-2">Module Mastery</h2>
-              <p class="text-slate-400 font-medium mb-8">{{ state.category }}</p>
-              
-              <div class="flex justify-center items-center gap-12 mb-10">
-                <div>
-                  <p class="text-5xl font-black text-indigo-600">{{ state.score }} / {{ state.attempted }}</p>
-                  <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">Correct</p>
-                </div>
-                <div class="w-px h-12 bg-slate-100"></div>
-                <div>
-                  <p class="text-5xl font-black text-slate-800">{{ Math.round((state.score / Math.max(state.attempted, 1)) * 100) }}%</p>
-                  <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">Score</p>
-                </div>
-              </div>
-
-              <p class="text-sm text-slate-400 mt-2 text-center">Questions Completed: {{ state.attempted }} / {{ activeQuestions.length }}</p>
-
-              <button @click="actions.reset" class="w-full bg-indigo-600 text-white font-bold py-4 rounded-2xl shadow-xl shadow-indigo-100 hover:bg-indigo-700 transition-all">
-                Finish & Go Home
-              </button>
-            </div>
-          </div>
-
-        </transition>
-      </main>
-    </div>
-  </div>
-
-  <script>
-    const { createApp, reactive, computed } = Vue;
-
-    const QUIZ_DATA = {
-      'Module 1 Ai': [
+export default
+{
+  "Module 1 Ai": [
         {
           "question": "Which mathematician wrote the 1950 paper 'Computing Machinery and Intelligence'?",
           "options": ["John McCarthy", "Alan Turing", "Andrew Moore", "Bill Gates"],
@@ -322,7 +152,7 @@
           "explanation": "Page 10 explicitly mentions 'Lack a creative mind' as a disadvantage of AI."
         }
       ],
-      'Module 2 Industry 5': [
+  "Module 2 Industry 5": [
         {
           "question": "What is defined as the capability of a machine to imitate intelligent human behavior?",
           "options": ["Robotics", "Deep Learning", "Artificial Intelligence", "Machine Learning"],
@@ -474,7 +304,7 @@
           "explanation": "The document mentions 'Robots superseding humans' as a potential future con. [cite: 80]"
         }
       ],
-      'Module 3 Intelligent Agent Lecture': [
+      "Module 3 Intelligent Agent Lecture": [
           {
             "question": "What is the primary definition of an Intelligent Agent?",
             "options": ["A robot that looks like a human", "An entity that perceives, decides, and acts to achieve goals", "A computer program that only stores data", "A sensor that monitors temperature"],
@@ -626,7 +456,7 @@
             "explanation": "Page 17 summarizes the agent's core functions: Perceive, decide, and act."
           }
         ],
-      'Search Algorithms in Artificial Intelligence': [
+      "Search Algorithms in Artificial Intelligence": [
         {
           "question": "What is the primary purpose of a Search Algorithm (SA) in AI?",
           "options": ["To delete data", "To navigate the problem space and find a solution", "To create hardware", "To increase internet speed"],
@@ -928,93 +758,4 @@
           "explanation": "The document compares Adversarial Search to a game of chess involving competition."
         }
       ]
-    };
-
-    createApp({
-      setup() {
-        // Application State (SPA Core)
-        const state = reactive({
-          view: 'landing',
-          category: null,
-          currentQuestion: 0,
-          selectedAnswer: null,
-          isAnswered: false,
-          score: 0,
-          attempted: 0,
-          shuffledQuestions: [],
-          quizData: QUIZ_DATA
-        });
-
-        // Shuffle function
-        function shuffleArray(array) {
-          const shuffled = array.slice();
-          for (let i = shuffled.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-          }
-          return shuffled;
-        }
-
-        // Computed Properties (Reactive Logic)
-        const activeQuestions = computed(() => state.shuffledQuestions);
-        const currentQuestionData = computed(() => activeQuestions.value[state.currentQuestion]);
-        const isLastQuestion = computed(() => state.currentQuestion + 1 === activeQuestions.value.length);
-
-        // Actions (State Mutations)
-        const actions = {
-          startQuiz(cat) {
-            state.category = cat;
-            state.shuffledQuestions = shuffleArray(state.quizData[cat]);
-            state.currentQuestion = 0;
-            state.score = 0;
-            state.attempted = 0;
-            state.selectedAnswer = null;
-            state.isAnswered = false;
-            state.view = 'quiz';
-          },
-          submitAnswer(index) {
-            if (state.isAnswered) return;
-            state.selectedAnswer = index;
-            state.isAnswered = true;
-            state.attempted++;
-            if (index === currentQuestionData.value.correct) state.score++;
-          },
-          next() {
-            if (!isLastQuestion.value) {
-              state.currentQuestion++;
-              state.selectedAnswer = null;
-              state.isAnswered = false;
-            } else {
-              state.view = 'results';
-            }
-          },
-          finishEarly() {
-            state.view = 'results';
-          },
-          reset() {
-            state.view = 'landing';
-            state.category = null;
-            state.currentQuestion = 0;
-            state.score = 0;
-            state.attempted = 0;
-            state.shuffledQuestions = [];
-          }
-        };
-
-        // Styling Logic
-        const getOptionClass = (idx) => {
-          if (!state.isAnswered) return "border-slate-100 text-slate-600 hover:border-indigo-300 hover:bg-indigo-50/30";
-          const correctIdx = currentQuestionData.value.correct;
-          if (idx === correctIdx) return "border-emerald-500 bg-emerald-50 text-emerald-700 shadow-md shadow-emerald-100";
-          if (idx === state.selectedAnswer) return "border-rose-400 bg-rose-50 text-rose-700";
-          return "border-slate-50 opacity-40 grayscale";
-        };
-
-        return {
-          state, actions, activeQuestions, currentQuestionData, isLastQuestion, getOptionClass
-        };
-      }
-    }).mount('#app');
-  </script>
-</body>
-</html>
+    }
